@@ -1,7 +1,6 @@
 '''Handle Repositories for gitlab'''
 
 import logging
-import os
 
 from git import Repo
 from git.exc import GitCommandError
@@ -9,6 +8,7 @@ from gitlab import Gitlab
 from gitlab.exceptions import GitlabAuthenticationError
 from gitlab.v4.objects import Project
 
+import helper
 from .git import Git
 
 log = logging.getLogger("dathomir")
@@ -43,8 +43,10 @@ class GitLab(Git):
         '''Clone the project into dest folder'''
         log.debug("Get %s - id=%d - url=%s",
                   project.name, project.id, project.ssh_url_to_repo)
-        repo_folder = os.path.join(dest_folder, project.name)
+
+        repo_folder = helper.get_path(dest_folder, project.ssh_url_to_repo)
         log.info("Cloning into project %s", repo_folder)
+
         try:
             Repo.clone_from(project.ssh_url_to_repo, repo_folder)
             log.info("%s cloned", repo_folder)

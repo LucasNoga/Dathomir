@@ -22,4 +22,4 @@ class Interface:
 
     @abstractmethod
     def select_server(self):
-        """Select a server"""
+        '''Select a server'''

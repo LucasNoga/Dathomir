@@ -41,7 +41,7 @@ class Console(Interface):
             server_name = f"{index}: {server.url}"
             servers.append((server_name, index,))
 
-        print(servers)
+        log.debug("Servers proposed %s", servers)
         questions = [inquirer.List(name="servers",
                                    message="Choose your git server",
                                    choices=servers)
