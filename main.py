@@ -3,24 +3,29 @@
 import logging
 import sys
 
+import helper
 from config import Config, load_config
-import core
+from interface import Interface, Console, Gui
 
 log = logging.getLogger("dathomir")
-
-PROJECT = "Dathomir"
-VERSION = "v1.0.0"
 
 
 def main():
     '''Program entrypoint'''
     setup_logger()
     config: Config = load_config('config.json')
-    setup_log_level(config)
+    set_log_level()
 
-    log.info('Project: %s - %s', PROJECT, VERSION)
+    # Setup Interface
+    interface: Interface
+    if helper.is_console():
+        log.info("Launch Console mode")
+        interface = Console(config)
+    else:
+        interface = Gui(config)
 
-    core.start("gitlab")
+    # Launch GUI or Console
+    interface.launch()
 
 
 def setup_logger():
@@ -35,10 +40,10 @@ def setup_logger():
     log.addHandler(stdout_handler)
 
 
-def setup_log_level(config: Config):
-    '''Setup log levelling'''
-    debug: int = logging.DEBUG if config.debug else logging.INFO
-    log.setLevel(debug)
+def set_log_level():
+    '''Set level log'''
+    level: int = logging.DEBUG if helper.is_debug() else logging.INFO
+    log.setLevel(level)
     log.debug('Set debug mode')
 
 

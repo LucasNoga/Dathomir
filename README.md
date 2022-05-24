@@ -8,6 +8,7 @@ Python project to clone all `gitlab` or `github` repositories using gitlab api
 
 - [Requirements](#requirements)
 - [Get started](#get-started)
+- [Options](#options)
 - [How it works](#how-it-works)
 - [VS Code](#vs-code)
 - [Formatting](#formatting)
@@ -36,7 +37,7 @@ $ pip install virtualenv
 
 ```bash
 $ git clone git@github.com:LucasNoga/dathomir.git
-$ cd horus
+$ cd dathomir
 $ virtualenv -p 3 .venv
 $ source .venv/bin/activate
 $ pip install -r requirements.txt
@@ -44,7 +45,48 @@ $ cp config.example.json config.json
 $ python3 main.py
 ```
 
+## Options
+
+Launch debug mode
+
+```bash
+$ python3 main.py -d
+$ python3 main.py --debug
+```
+
+Launch console app
+
+```bash
+$ python3 main.py -c
+$ python3 main.py --console
+```
+
 ## How it works
+
+You have to setup your `config.json` file
+
+To do that you need to setup that
+
+```json
+{
+  "type": "gitlab",
+  "url": "<GITLAB_URL>",
+  "token": "<GITLAB_TOKEN>"
+}
+```
+
+### On GitLab
+
+Your url can be `your-company.gitlab.com`  
+Your token can be generate into `https://your-company.gitlab.com/-/profile/personal_access_tokens`  
+Select the scope `read-api`  
+Put your token into the json config file here
+
+```json
+{
+  "token": "<GITLAB_TOKEN>"
+}
+```
 
 The script connect to the self-hosted GitLab instance and request api to get all repository path  
 Then clones it into repositories folder

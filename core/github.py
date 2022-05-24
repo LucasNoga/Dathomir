@@ -9,26 +9,9 @@ log = logging.getLogger("dathomir")
 
 class GitHub(Git):
     '''Gitlab instance to handle project'''
-    # Url of Gitlab repository
-    url: str
-    # Only dns and not all URI
-    dns: str
-    # Authentication token
-    token: str
-    type: str = 'github'
-
-    remote: None
-
-    def __init__(self, url: str, token: str):
-        super().__init__(url, token)
-        self.url = url
-        self.dns = self.url.split("//")[-1]  # Escape https://
-        self.token = token
-
-        self.access()
 
     # TODO
-    def access(self):
+    def get_access(self):
         '''Get access to self-hosted GitHub instance
         with private token or personal token authentication'''
 
