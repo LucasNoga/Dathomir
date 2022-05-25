@@ -117,6 +117,18 @@ All repositories will be store in `./repositories` folder
 
 ## Options
 
+Launch config mode
+You can directly modify `config.json` file through the app
+
+```bash
+$ python3 dathomir.py --config
+```
+
+in this mode you can
+
+- Add new config server
+- Remove config server already in config
+
 Launch debug mode
 
 ```bash

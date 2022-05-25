@@ -1,12 +1,12 @@
 '''main package'''
 
-import os
 import logging
+import os
 import sys
 
 import helper
 from config import Config, load_config
-from interface import Interface, Console, Gui
+from interface import Console, Gui, Interface
 
 log = logging.getLogger("dathomir")
 
@@ -31,12 +31,16 @@ def main():
     # Interface (Console or GUI)
     interface: Interface
     if helper.is_console():
-        log.info("Launch Console mode")
+        log.info("Launch console mode")
         interface = Console(config)
     else:
         interface = Gui(config)
 
     # Launch App
+    if helper.is_config():
+        log.info("Launch config mode")
+        Console(config).configuration()
+        return
     interface.launch()
 
 

@@ -23,3 +23,11 @@ class Interface:
     @abstractmethod
     def select_server(self):
         '''Select a server'''
+
+    @abstractmethod
+    def add_server(self):
+        '''Add a new server'''
+
+    @abstractmethod
+    def remove_server(self):
+        '''Remove a server'''
