@@ -1,0 +1,17 @@
+{
+  "repo": "repositories",
+  "servers": [
+    {
+      "name": "Github/LucasNoga",
+      "type": "github",
+      "url": "https://github.com",
+      "token": "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"
+    },
+    {
+      "name": "Gitlab/LucasNoga",
+      "type": "gitlab",
+      "url": "https://gitlab.com",
+      "token": "glpat-qCNL5XWGE4ZvNCYnPjDR"
+    }
+  ]
+}
