@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v1.0.0] Init project
 
-> Setup to clone `Gitlab` Repo  
-> Setup config file  
-> Setup readme file
+> Add: console mode to clone on `Gitlab and Github`  
+> Add: Config manager to add or remove servers config  
+> Add: Executables for `Linux`, `MacOs` and `Windows`  
+> Add: Unit tests  
+> Add: Setup for v2.0.0 (GUI)
