@@ -1,12 +1,15 @@
 '''Console interface'''
 
 import logging
+import sys
 
 import inquirer
 from prettytable import PrettyTable
 
 import core
 from config import Server, constants
+
+
 from interface import Interface
 
 log = logging.getLogger('dathomir')
@@ -22,13 +25,17 @@ class Console(Interface):
         log.info("Selected: %s", server)
 
         # Start backup
-        core.start(server, self.config.repository)
+        try:
+            core.start(server, self.config.repository)
+        except KeyboardInterrupt:
+            sys.exit(0)
 
     def show_servers(self):
         '''Show servers'''
-        table = PrettyTable(['Id', 'Git Server', 'Url', 'Token'])
+        table = PrettyTable(['Id', 'Name', 'Git Server', 'Url', 'Token'])
         for idx, server in enumerate(self.config.servers):
-            table.add_row([idx+1, server.type, server.url, server.token])
+            table.add_row([idx+1, server.name, server.type,
+                          server.url, server.token])
         print("\n\t\t\t\tServers Git")
         print(table)
         print("\n")
@@ -38,7 +45,7 @@ class Console(Interface):
         servers = []
         for idx, server in enumerate(self.config.servers):
             index = idx+1
-            server_name = f"{index}: {server.url}"
+            server_name = f"{index}: {server.name} - {server.url}"
             servers.append((server_name, index,))
 
         log.debug("Servers proposed %s", servers)

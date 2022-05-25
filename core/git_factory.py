@@ -1,12 +1,11 @@
 '''Handle Repositories for gitlab'''
 
 import logging
-
 from enum import Enum
 
 from core.github import GitHub
-from core.gitlab import GitLab
 from core.git import Git
+from core.gitlab import GitLab
 
 log = logging.getLogger("dathomir")
 

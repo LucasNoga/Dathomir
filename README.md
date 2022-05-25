@@ -10,6 +10,8 @@ Python project to clone all `gitlab` or `github` repositories using gitlab api
 - [Get started](#get-started)
 - [Options](#options)
 - [How it works](#how-it-works)
+  - [GitHub Account](#on-github-account)
+  - [For GitLab instance](#on-gitlab-instance)
 - [VS Code](#vs-code)
 - [Formatting](#formatting)
 - [Contact](#formatting)
@@ -75,11 +77,23 @@ To do that you need to setup that
 }
 ```
 
-### On GitLab
+### On GitHub Account
+
+- Go to your account via: `https://github.com/login`
+- Your tooken ca be generate into: `https://github.com/settings/tokens`
+- Select the scope `repo` or `public_repo`
+
+```json
+{
+  "token": "<GITHUB_TOKEN>"
+}
+```
+
+### On GitLab instance
 
 Your url can be `your-company.gitlab.com`  
 Your token can be generate into `https://your-company.gitlab.com/-/profile/personal_access_tokens`  
-Select the scope `read-api`  
+Select the scope `read-api` and `read-repository`  
 Put your token into the json config file here
 
 ```json
@@ -88,7 +102,8 @@ Put your token into the json config file here
 }
 ```
 
-The script connect to the self-hosted GitLab instance and request api to get all repository path  
+The script connect to the self-hosted `GitLab instance` or `GitHub account` and request api
+to get all repository path  
 Then clones it into repositories folder
 
 ## VS Code

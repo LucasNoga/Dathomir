@@ -290,6 +290,5 @@ cython_debug/
 
 # App ignore
 TODO
-config*.json
-
-repositories
+config.json
+repositories/

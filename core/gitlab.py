@@ -11,33 +11,41 @@ import helper
 
 from core.git import Git
 
-
 log = logging.getLogger("dathomir")
 
 
 class GitLab(Git):
     '''Gitlab instance to handle project'''
-
     remote: Gitlab
 
-    def get_access(self) -> Gitlab:
+    '''if it's self host instance gitlab true (like company.gitlab.com),
+    or only directly https://gitlab.com
+    '''
+    hosted: bool
+
+    def __init__(self, url, token):
+        super().__init__(url, token)
+        # Check if it's a self-host Gitlab instance
+        self.hosted = True if self.url != "https://gitlab.com" else False
+
+    def get_access(self):
         '''Get access to self-hosted GitLab instance
         with private token or personal token authentication'''
-        self.remote = Gitlab(url=self.url, private_token=self.token)
+
+        if self.hosted:
+            log.info("Connected to self host instance")
+            self.remote = Gitlab(url=self.url, private_token=self.token)
+        else:
+            log.info("Connect to Gitlab.com")
+            self.remote = Gitlab(private_token=self.token)
         self.remote.auth()
 
     def get_projects(self) -> list:
         '''Get all project with your authentication'''
-        return self.remote.projects.list(all=True)
-
-    def clone_projects(self, projects: list, dest_folder: str):
-        '''Get through all git projects to clone into dest folder'''
-        log.info("Clonning projects into %s", dest_folder)
-        projects = sorted(projects, key=lambda k: k.id)
-        for idx, project in enumerate(projects):
-            log.info("(%s/%s) Cloning '%s' project...",
-                     idx+1, len(projects), project.name)
-            self.clone_project(project, dest_folder)
+        if self.hosted:
+            return self.remote.projects.list(all=True)
+        else:
+            return self.remote.projects.list(owned=True)
 
     def clone_project(self, project: Project, dest_folder: str):
         '''Clone the project into dest folder using git clone'''

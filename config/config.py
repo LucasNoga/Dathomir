@@ -24,7 +24,11 @@ def load_config(filepath: str) -> Config:
             config.repository = json_data.get('repository', 'repositories')
             servers = json_data.get('servers', [])
             config.servers = [
-                Server(server['type'], server['url'], server['token']) for server in servers]
+                Server(server['name'], server['type'],
+                       server['url'], server['token'])
+                for server
+                in servers
+            ]
     except FileNotFoundError:
         pass
     return config
