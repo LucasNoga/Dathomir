@@ -20,9 +20,10 @@ class Git:
         self.token = token
 
     @abstractmethod
-    def get_access(self):
-        '''Get access to self-hosted GitHub instance
-        with private token or personal token authentication'''
+    def connect(self) -> tuple[str, Exception]:
+        '''Get access to Git Server account (Github.com, Gitlab.com)
+        or self-host instance with private token or personal token authentication
+        '''
 
     @abstractmethod
     def get_projects(self) -> list:

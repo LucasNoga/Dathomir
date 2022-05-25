@@ -3,9 +3,9 @@
 import logging
 from enum import Enum
 
-from core.github import GitHub
-from core.git import Git
-from core.gitlab import GitLab
+from .github import GitHub
+from .git import Git
+from .gitlab import GitLab
 
 log = logging.getLogger("dathomir")
 

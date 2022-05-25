@@ -4,12 +4,13 @@ import logging
 
 from git import Repo
 from git.exc import GitCommandError
-from gitlab import Gitlab
+from gitlab import Gitlab, GitlabAuthenticationError
 from gitlab.v4.objects import Project
 
 import helper
 
-from core.git import Git
+from .exc import AuthGitException
+from .git import Git
 
 log = logging.getLogger("dathomir")
 
@@ -28,17 +29,21 @@ class GitLab(Git):
         # Check if it's a self-host Gitlab instance
         self.hosted = True if self.url != "https://gitlab.com" else False
 
-    def get_access(self):
+    def connect(self) -> tuple[str, Exception]:
         '''Get access to self-hosted GitLab instance
         with private token or personal token authentication'''
-
         if self.hosted:
             log.info("Connected to self host instance")
             self.remote = Gitlab(url=self.url, private_token=self.token)
         else:
             log.info("Connect to Gitlab.com")
             self.remote = Gitlab(private_token=self.token)
-        self.remote.auth()
+
+        try:
+            self.remote.auth()
+        except GitlabAuthenticationError as exc:
+            return (False, AuthGitException(exc.response_code, exc.error_message))
+        return True, None
 
     def get_projects(self) -> list:
         '''Get all project with your authentication'''

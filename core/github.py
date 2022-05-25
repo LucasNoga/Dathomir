@@ -5,10 +5,12 @@ import logging
 from git import Repo
 from git.exc import GitCommandError
 from github import Github
+from github.GithubException import BadCredentialsException
 from github.Repository import Repository
 
 import helper
 
+from .exc import AuthGitException
 from .git import Git
 
 log = logging.getLogger("dathomir")
@@ -18,10 +20,17 @@ class GitHub(Git):
     '''Gitlab instance to handle project'''
     remote: Github
 
-    def get_access(self):
+    def connect(self) -> tuple[str, Exception]:
         '''Get access to self-hosted GitLab instance
         with private token or personal token authentication'''
         self.remote: Github = Github(self.token)
+        # self.remote: Github = Github('toto')
+
+        try:
+            self.get_projects()
+        except BadCredentialsException as exc:
+            return (False, AuthGitException(exc.status, exc.data['message']))
+        return True, None
 
     def get_projects(self) -> list:
         '''Get all project with your authentication'''

@@ -291,4 +291,4 @@ cython_debug/
 # App ignore
 TODO
 config.json
-repositories/
+repositories*/

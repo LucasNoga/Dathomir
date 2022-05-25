@@ -2,3 +2,6 @@
 
 from .console import is_console, is_debug
 from .path import get_path
+
+# Tests
+from .helper_test import HelperTest

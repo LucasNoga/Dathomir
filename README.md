@@ -12,6 +12,7 @@ Python project to clone all `gitlab` or `github` repositories using gitlab api
 - [How it works](#how-it-works)
   - [GitHub Account](#on-github-account)
   - [For GitLab instance](#on-gitlab-instance)
+- [Unit tests](#tests)
 - [VS Code](#vs-code)
 - [Formatting](#formatting)
 - [Contact](#formatting)
@@ -100,6 +101,21 @@ Put your token into the json config file here
 {
   "token": "<GITLAB_TOKEN>"
 }
+```
+
+## Tests
+
+To execute all unit tests
+
+```bash
+$ python -m unittest
+```
+
+To execute unit tests for module
+
+```bash
+$ python -m unittest helper
+$ python -m unittest core
 ```
 
 The script connect to the self-hosted `GitLab instance` or `GitHub account` and request api
