@@ -293,8 +293,4 @@ TODO
 config.json
 config-*.json
 repositories*/
-
-# Exe ignore
 exe/
-linux_exe/
-windows_exe/
