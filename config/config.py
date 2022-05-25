@@ -2,6 +2,9 @@
 
 import json
 import logging
+
+import helper
+
 from config.server import Server
 
 log = logging.getLogger('dathomir')
@@ -21,7 +24,7 @@ def load_config(filepath: str) -> Config:
         with open(filepath, mode='r', encoding='utf-8') as document:
             json_data = json.load(document)
             config.debug = json_data.get('debug', 'true')
-            config.repository = json_data.get('repository', 'repositories')
+            config.repository = f"{helper.get_root_path(filepath)}/{json_data.get('repository', 'repositories')}"
             servers = json_data.get('servers', [])
             config.servers = [
                 Server(server['name'], server['type'],
@@ -30,5 +33,5 @@ def load_config(filepath: str) -> Config:
                 in servers
             ]
     except FileNotFoundError:
-        pass
+        return None
     return config

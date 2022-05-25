@@ -6,6 +6,11 @@ from pathlib import Path
 log = logging.getLogger('dathomir')
 
 
+def get_root_path(filename: str) -> str:
+    '''get path of application'''
+    return os.path.realpath(os.path.dirname(filename))
+
+
 def get_path(base_folder: str = ".", path: str = None) -> tuple[str, Exception]:
     '''Create all folders recursively from path into base_folder'''
     path_without_protocol: str

@@ -39,7 +39,7 @@ def is_console() -> bool:
 
         for current_argument, _ in arguments:
             if current_argument in (options):
-                log.debug("Pption console found")
+                log.debug("Option console found")
                 return True
     except getopt.error:
         pass

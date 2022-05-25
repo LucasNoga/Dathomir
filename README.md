@@ -8,10 +8,12 @@ Python project to clone all `gitlab` or `github` repositories using gitlab api
 
 - [Requirements](#requirements)
 - [Get started](#get-started)
-- [Options](#options)
 - [How it works](#how-it-works)
+- [How to use](#how-to-use)
   - [GitHub Account](#on-github-account)
-  - [For GitLab instance](#on-gitlab-instance)
+  - [GitLab Account](#on-gitlab-account)
+  - [Self-host Gitlab](#on-self-host-gitlab-instance)
+- [Options](#options)
 - [Unit tests](#tests)
 - [VS Code](#vs-code)
 - [Formatting](#formatting)
@@ -45,62 +47,90 @@ $ virtualenv -p 3 .venv
 $ source .venv/bin/activate
 $ pip install -r requirements.txt
 $ cp config.example.json config.json
-$ python3 main.py
+$ python3 .
 ```
+
+## How it works
+
+The script connect to a git server account (Gitlab or Github) and use the REST API to get all repository of the account and clone it
+
+These repositories go to `repositories folder`
+
+## How to use
+
+You have to setup your `config.json` file in `.` directory
+
+After you need to setup your `Github` or `Gitlab` account
+
+### On GitHub Account
+
+- Go to your account via: `https://github.com/login`
+- Your tooken ca be generate into: `https://github.com/settings/tokens`
+- Select the scope `public_repo` or `repo` (get private repo)
+- Click to generate token
+- Copy-Paste the token just generated into `<GITHUB_TOKEN>`
+
+```json
+{
+  "type": "github",
+  "url": "https://github.com",
+  "token": "<GITHUB_TOKEN>"
+}
+```
+
+### On GitLab Account
+
+- Go to your account via: `https://gitlab.com/users/sign_in`
+- Your token ca be generate into: `https://gitlab.com/-/profile/personal_access_tokens`
+- Select the scope `read-api` and `read-repository`
+- Click to generate token
+- Copy-Paste the token just generated into `<GITLAB_TOKEN>`
+
+```json
+{
+  "type": "gitlab",
+  "url": "https://gitlab.com",
+  "token": "<GITLAB_TOKEN>"
+}
+```
+
+### On Self-Host Gitlab instance
+
+- Your url can be `your-company.gitlab.com`
+- Your token can be generate into `https://your-company.gitlab.com/-/profile/personal_access_tokens`
+- Select the scope `read-api` and `read-repository`
+- Click to generate token
+- Copy-Paste the token just generated into `<GITLAB_TOKEN>`
+
+```json
+{
+  "type": "gitlab",
+  "url": "https://your-company-gitlab.com",
+  "token": "<GITLAB_TOKEN>"
+}
+```
+
+Then launch the script `python . --console`  
+and select the config you want to get a backup
+
+All repositories will be store in `./repositories` folder
 
 ## Options
 
 Launch debug mode
 
 ```bash
-$ python3 main.py -d
-$ python3 main.py --debug
+$ python3 dathomir.py -d
+$ python3 . -d
+$ python3 dathomir.py --debug
+$ python3 . --debug
 ```
 
 Launch console app
 
 ```bash
-$ python3 main.py -c
-$ python3 main.py --console
-```
-
-## How it works
-
-You have to setup your `config.json` file
-
-To do that you need to setup that
-
-```json
-{
-  "type": "gitlab",
-  "url": "<GITLAB_URL>",
-  "token": "<GITLAB_TOKEN>"
-}
-```
-
-### On GitHub Account
-
-- Go to your account via: `https://github.com/login`
-- Your tooken ca be generate into: `https://github.com/settings/tokens`
-- Select the scope `repo` or `public_repo`
-
-```json
-{
-  "token": "<GITHUB_TOKEN>"
-}
-```
-
-### On GitLab instance
-
-Your url can be `your-company.gitlab.com`  
-Your token can be generate into `https://your-company.gitlab.com/-/profile/personal_access_tokens`  
-Select the scope `read-api` and `read-repository`  
-Put your token into the json config file here
-
-```json
-{
-  "token": "<GITLAB_TOKEN>"
-}
+$ python3 . -c
+$ python3 . --console
 ```
 
 ## Tests
@@ -108,6 +138,7 @@ Put your token into the json config file here
 To execute all unit tests
 
 ```bash
+$ python -m unittest discover
 $ python -m unittest
 ```
 
@@ -117,10 +148,6 @@ To execute unit tests for module
 $ python -m unittest helper
 $ python -m unittest core
 ```
-
-The script connect to the self-hosted `GitLab instance` or `GitHub account` and request api
-to get all repository path  
-Then clones it into repositories folder
 
 ## VS Code
 

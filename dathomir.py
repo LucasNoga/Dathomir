@@ -1,5 +1,6 @@
 '''main package'''
 
+import os
 import logging
 import sys
 
@@ -12,11 +13,22 @@ log = logging.getLogger("dathomir")
 
 def main():
     '''Program entrypoint'''
+    # Logger
     setup_logger()
-    config: Config = load_config('config.json')
+    app_path = helper.get_root_path(__file__)
     set_log_level()
+    log.debug("Application path: %s", app_path)
 
-    # Setup Interface
+    # Config
+    config_path = os.path.join(app_path, 'config.json')
+    config: Config = load_config(os.path.join(
+        app_path, 'config.json'))
+    if config is None:
+        log.critical("No config file found in '%s'", config_path)
+        log.info("Exiting...")
+        sys.exit(1)
+
+    # Interface (Console or GUI)
     interface: Interface
     if helper.is_console():
         log.info("Launch Console mode")
@@ -24,7 +36,7 @@ def main():
     else:
         interface = Gui(config)
 
-    # Launch GUI or Console
+    # Launch App
     interface.launch()
 
 
