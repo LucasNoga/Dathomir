@@ -8,6 +8,9 @@ import warnings
 from .github import GitHub
 from .gitlab import GitLab
 
+GITHUB_TOKEN = "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"
+GITLAB_TOKEN = "glpat-qCNL5XWGE4ZvNCYnPjDR"
+
 
 class TestGitAccess(unittest.TestCase):
     '''
@@ -15,10 +18,8 @@ class TestGitAccess(unittest.TestCase):
     '''
 
     def setUp(self) -> None:
-        self.github: GitHub = GitHub("https://github.com",
-                                     "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")
-        self.gitlab: GitLab = GitLab("https://gitlab.com",
-                                     "glpat-sw3eCQ6xKuy_1V_6uQcg")
+        self.github: GitHub = GitHub("https://github.com", GITHUB_TOKEN)
+        self.gitlab: GitLab = GitLab("https://gitlab.com", GITLAB_TOKEN)
         warnings.simplefilter("ignore")
 
     def tearDown(self):
@@ -56,10 +57,8 @@ class TestGitListProjects(unittest.TestCase):
     '''
 
     def setUp(self) -> None:
-        self.github: GitHub = GitHub("https://github.com",
-                                     "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")
-        self.gitlab: GitLab = GitLab("https://gitlab.com",
-                                     "glpat-sw3eCQ6xKuy_1V_6uQcg")
+        self.github: GitHub = GitHub("https://github.com", GITHUB_TOKEN)
+        self.gitlab: GitLab = GitLab("https://gitlab.com", GITLAB_TOKEN)
         warnings.simplefilter("ignore")
 
     def test_access_github_projects(self):
@@ -81,10 +80,8 @@ class TestGitCloneProject(unittest.TestCase):
     '''
 
     def setUp(self) -> None:
-        self.github: GitHub = GitHub("https://github.com",
-                                     "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")
-        self.gitlab: GitLab = GitLab("https://gitlab.com",
-                                     "glpat-sw3eCQ6xKuy_1V_6uQcg")
+        self.github: GitHub = GitHub("https://github.com", GITHUB_TOKEN)
+        self.gitlab: GitLab = GitLab("https://gitlab.com", GITLAB_TOKEN)
         self.folder = 'repositories_test'
         warnings.simplefilter("ignore")
 

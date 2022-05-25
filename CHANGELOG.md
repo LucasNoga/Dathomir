@@ -12,5 +12,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [v1.0.0] Init project
 
 > Setup to clone `Gitlab` Repo  
-> Setup .config file  
+> Setup config file  
 > Setup readme file

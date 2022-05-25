@@ -29,6 +29,6 @@ def get_path(base_folder: str = ".", path: str = None) -> tuple[str, Exception]:
     basename: str = Path(path).stem
     repository_folder = os.path.join(dns, project_folder, basename)
 
-    folder_to_create = os.path.join(base_folder, repository_folder)
+    folder_to_create: str = os.path.join(base_folder, repository_folder)
     log.debug("Folder to create %s", folder_to_create)
     return folder_to_create

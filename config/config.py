@@ -69,7 +69,8 @@ def load_config(filepath: str) -> Config:
             config.debug = json_data.get('debug', 'true')
 
             backup_folder = json_data.get('repository', 'repositories')
-            config.repository = f"{helper.get_root_path(filepath)}/{backup_folder}"
+            config.repository = os.path.join(
+                helper.get_root_path(filepath), backup_folder)
 
             servers = json_data.get('servers', [])
             config.servers = [

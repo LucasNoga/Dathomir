@@ -15,6 +15,9 @@ Python project to clone all `gitlab` or `github` repositories using gitlab api
   - [Self-host Gitlab](#on-self-host-gitlab-instance)
 - [Options](#options)
 - [Unit tests](#tests)
+- [Executable](#executable)
+  - [Linux - MacOs](#linux-macos)
+  - [Windows](#windows)
 - [VS Code](#vs-code)
 - [Formatting](#formatting)
 - [Contact](#formatting)
@@ -30,6 +33,9 @@ packages to install with pip
 python3 -m pip install --user pip install virtualenv
 python3 -m pip install --user pip install pep8
 ```
+
+Important  
+You also need to bind an ssh key to Gitlab or Github Account to get ssh access
 
 ## Get started
 
@@ -159,6 +165,30 @@ To execute unit tests for module
 ```bash
 $ python -m unittest helper
 $ python -m unittest core
+```
+
+## Executable
+
+Command to build executable to execute script
+
+### Linux-MacOs
+
+Careful disable virtualenv
+
+```sh
+$ pyinstaller dathomir.py --onedir -y --clean --log-level ERROR --distpath=exe/linux
+$ cp ./config.example.json ./exe/linux/dathomir/config.json
+$ ./exe/linux/dathomir/dathomir
+```
+
+### Windows
+
+In powershell
+
+```sh
+> pyinstaller.exe .\dathomir.py --onedir -y --clean --log-level ERROR --distpath=exe/windows
+> cp .\config.example.json .\exe\windows\dathomir\config.json
+> .\exe\windows\dathomir\dathomir.exe
 ```
 
 ## VS Code
