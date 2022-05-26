@@ -71,7 +71,7 @@ After you need to setup your `Github` or `Gitlab` account
 ### On GitHub Account
 
 - Go to your account via: `https://github.com/login`
-- Your tooken ca be generate into: `https://github.com/settings/tokens`
+- Your token ca be generate into: `https://github.com/settings/tokens`
 - Select the scope `public_repo` or `repo` (get private repo)
 - Click to generate token
 - Copy-Paste the token just generated into `<GITHUB_TOKEN>`
@@ -83,6 +83,8 @@ After you need to setup your `Github` or `Gitlab` account
   "token": "<GITHUB_TOKEN>"
 }
 ```
+
+See for [more details](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 ### On GitLab Account
 
@@ -99,6 +101,8 @@ After you need to setup your `Github` or `Gitlab` account
   "token": "<GITLAB_TOKEN>"
 }
 ```
+
+See for [more details](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
 
 ### On Self-Host Gitlab instance
 

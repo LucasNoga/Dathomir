@@ -8,7 +8,7 @@ import warnings
 from .github import GitHub
 from .gitlab import GitLab
 
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "MgYCIRm3hUqJrLQ0gcAmamfk5x0lfX34BhXo"
 GITLAB_TOKEN = "glpat-qCNL5XWGE4ZvNCYnPjDR"
 
 
