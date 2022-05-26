@@ -1,14 +1,14 @@
 '''help to manage path'''
 import logging
-import os
+
 from pathlib import Path
 
 log = logging.getLogger('dathomir')
 
 
-def get_root_path(filename: str) -> str:
-    '''get path of application'''
-    return os.path.realpath(os.path.dirname(filename))
+def get_app_path(filepath: Path) -> Path:
+    '''Get path of application'''
+    return Path(filepath).parent.absolute()
 
 
 def get_path(base_folder: str = ".", path: str = None) -> tuple[str, Exception]:
@@ -25,10 +25,10 @@ def get_path(base_folder: str = ".", path: str = None) -> tuple[str, Exception]:
     except ValueError:
         return None, Exception(f"No ':' in path {path}")
 
-    project_folder = os.path.dirname(project_folder)
+    project_folder = Path(project_folder).parent
     basename: str = Path(path).stem
-    repository_folder = os.path.join(dns, project_folder, basename)
+    repository_folder = Path(dns, project_folder, basename)
 
-    folder_to_create: str = os.path.join(base_folder, repository_folder)
+    folder_to_create: str = Path(base_folder, repository_folder)
     log.debug("Folder to create %s", folder_to_create)
     return folder_to_create

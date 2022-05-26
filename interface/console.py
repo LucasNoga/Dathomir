@@ -78,8 +78,6 @@ class Console(Interface):
         elif choice == 2:
             self.remove_server()
 
-        sys.exit(0)
-
     def add_server(self):
         '''Add a new server'''
         log.debug("Add a new configuration")
@@ -93,7 +91,7 @@ class Console(Interface):
                 name='url',
                 message="Url of your server (ex: https://github.com)",
                 validate=lambda _, x: re.match(
-                    "^http[s]?:\/\/(www\.)?(.*)?\/?(.)*", x)
+                    r"^http[s]?:\/\/(www\.)?(.*)?\/?(.)*", x)
             ),
             inquirer.Text(
                 name='token',
@@ -154,7 +152,7 @@ class Console(Interface):
         confirmations = [
             inquirer.List(
                 name='confirmation',
-                message=f"Are you sur to delete :  ?",
+                message=f"Are you sur to delete : {server.name} - Url: {server.url} ?",
                 choices=[("Yes", '1'), ('No', '0')]
             ),
         ]

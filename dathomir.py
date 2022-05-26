@@ -1,11 +1,12 @@
 '''main package'''
 
 import logging
-import os
 import sys
+from pathlib import Path
 
 import helper
 from config import Config, load_config
+from config.constants import CONFIG_PATH
 from interface import Console, Gui, Interface
 
 log = logging.getLogger("dathomir")
@@ -15,14 +16,13 @@ def main():
     '''Program entrypoint'''
     # Logger
     setup_logger()
-    app_path = helper.get_root_path(__file__)
+    app_path: Path = helper.get_app_path(__file__)
     set_log_level()
     log.debug("Application path: %s", app_path)
 
     # Config
-    config_path = os.path.join(app_path, 'config.json')
-    config: Config = load_config(os.path.join(
-        app_path, 'config.json'))
+    config_path: Path = Path(app_path, CONFIG_PATH)
+    config: Config = load_config(config_path)
     if config is None:
         log.critical("No config file found in '%s'", config_path)
         log.info("Exiting...")
@@ -40,7 +40,7 @@ def main():
     if helper.is_config():
         log.info("Launch config mode")
         Console(config).configuration()
-        return
+        sys.exit(0)
     interface.launch()
 
 
