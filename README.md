@@ -7,7 +7,7 @@
 
 Python project to clone all `gitlab` or `github` repositories using gitlab api
 
-**_Version: 1.0.0_**
+**_Version: 1.1.0_**
 
 ## Summary
 
@@ -194,7 +194,7 @@ Command to build executable to execute script
 Careful disable virtualenv
 
 ```sh
-$ pyinstaller dathomir.py --onedir -y --clean --log-level ERROR --distpath=exe/linux
+$ pyinstaller dathomir.py --onedir -y --clean --distpath=exe/linux --log-level INFO
 $ cp ./config.example.json ./exe/linux/dathomir/config.json
 $ ./exe/linux/dathomir/dathomir
 ```
@@ -204,7 +204,7 @@ $ ./exe/linux/dathomir/dathomir
 In powershell
 
 ```sh
-> pyinstaller.exe .\dathomir.py --onedir -y --clean --log-level ERROR --distpath=exe/windows
+> pyinstaller.exe .\dathomir.py --onedir -y --clean --distpath=exe/windows --log-level INFO
 > cp .\config.example.json .\exe\windows\dathomir\config.json
 > .\exe\windows\dathomir\dathomir.exe
 ```
