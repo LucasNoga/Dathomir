@@ -1,6 +1,6 @@
 # Dathomir
 
-[![ci](https://github.com/LucasNoga/dathomir/actions/workflows/python.yml/badge.svg?branch=master)](https://github.com/LucasNoga/dathomir/actions)
+[![Dathomir-CI](https://github.com/LucasNoga/Dathomir/actions/workflows/python.yml/badge.svg)](https://github.com/LucasNoga/Dathomir/actions/workflows/python.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Version](https://img.shields.io/github/tag/LucasNoga/dathomir.svg)](https://github.com/LucasNoga/dathomir/releases)
 [![Total views](https://img.shields.io/sourcegraph/rrc/github.com/LucasNoga/dathomir.svg)](https://sourcegraph.com/github.com/LucasNoga/dathomir)
@@ -175,6 +175,9 @@ To execute unit tests for module
 $ python -m unittest helper
 $ python -m unittest core
 ```
+
+On github you need to modify settings to process ci workflow using:  
+https://github.com/marketplace/actions/webfactory-ssh-agent
 
 ## Executable
 
