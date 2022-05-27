@@ -176,6 +176,12 @@ $ python -m unittest helper
 $ python -m unittest core
 ```
 
+To execute production tests
+
+```bash
+$ pytest --ignore=repositories --ignore=repositories_test --ignore=exe
+```
+
 On github you need to modify settings to process ci workflow using:  
 https://github.com/marketplace/actions/webfactory-ssh-agent
 
