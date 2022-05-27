@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 # Unreleased
 
+## [v1.1.0] - Upgrade version
+
+> Update: Unit tests upgraded
+> Add: CI
+> Add: Handler for interface (Console, GUI)
+
 ## [v1.0.0] Init project
 
 > Add: console mode to clone on `Gitlab and Github`  

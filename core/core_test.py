@@ -5,10 +5,12 @@ To execute: python -m unittest -v core
 import unittest
 import warnings
 
+import pytest
+
 from .github import GitHub
 from .gitlab import GitLab
 
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "MgYCIRm3hUqJrLQ0gcAmamfk5x0lfX34BhXo"
 GITLAB_TOKEN = "glpat-qCNL5XWGE4ZvNCYnPjDR"
 
 
@@ -85,12 +87,14 @@ class TestGitCloneProject(unittest.TestCase):
         self.folder = 'repositories_test'
         warnings.simplefilter("ignore")
 
+    @pytest.mark.skip(reason="no way of currently testing this")
     def test_clone_github_project(self):
         '''python -m unittest core.TestGitCloneProject.test_clone_github_project'''
         self.github.connect()
         project: list = self.github.get_projects()[0]
         self.github.clone_project(project, self.folder)
 
+    @pytest.mark.skip(reason="no way of currently testing this")
     def test_clone_gitlab_project(self):
         '''python -m unittest core.TestGitCloneProject.test_clone_gitlab_project'''
         self.gitlab.connect()

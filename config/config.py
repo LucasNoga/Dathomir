@@ -2,11 +2,12 @@
 
 import json
 import logging
-import os
+from pathlib import Path
 
 import helper
 
-from config.server import Server
+from .constants import DEFAULT_DEBUG, DEFAULT_REPOSITORY
+from .server import Server
 
 log = logging.getLogger('dathomir')
 
@@ -43,8 +44,9 @@ class Config:
     def save_config(self):
         '''Save config into the path define'''
         log.debug("Saving config %s", self.path)
+
         config = {
-            'repository': os.path.basename(self.repository),
+            'repository': Path(self.repository).name,
             'servers': [{"name": server.name,
                          "type": server.type,
                          "url": server.url,
@@ -53,12 +55,11 @@ class Config:
                         in self.servers
                         ]
         }
-        # log.debug("New config %s", json.dumps(config, indent=2))
         with open(self.path, 'w', encoding="utf-8") as document:
             json.dump(config, document, indent=2)
 
 
-def load_config(filepath: str) -> Config:
+def load_config(filepath: Path) -> Config:
     '''Create config object loading data from config.json file'''
     config: Config = Config()
     try:
@@ -66,11 +67,11 @@ def load_config(filepath: str) -> Config:
             json_data = json.load(document)
 
             config.path = filepath
-            config.debug = json_data.get('debug', 'true')
+            config.debug = json_data.get('debug', DEFAULT_DEBUG)
 
-            backup_folder = json_data.get('repository', 'repositories')
-            config.repository = os.path.join(
-                helper.get_root_path(filepath), backup_folder)
+            backup_folder = json_data.get('repository', DEFAULT_REPOSITORY)
+            config.repository = Path(
+                helper.get_app_path(filepath), backup_folder)
 
             servers = json_data.get('servers', [])
             config.servers = [

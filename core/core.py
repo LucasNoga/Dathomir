@@ -1,13 +1,12 @@
 '''core module to handle git clone repo'''
 import logging
-import os
 import sys
+from pathlib import Path
 
 from config import Server
 
-from core.git import Git
-from core.git_factory import GitFactory
-
+from .git import Git
+from .git_factory import GitFactory
 
 log = logging.getLogger("dathomir")
 
@@ -34,9 +33,10 @@ def start(server: Server, folder_dest: str):
 
     log.info("Cloning %s the projects", len(projects))
 
-    if not os.path.exists(folder_dest):
-        log.info("Creating folder %s", folder_dest)
-        os.makedirs(folder_dest)
+    folder: Path = Path(folder_dest)
+    if not folder.exists():
+        log.info("Creating folder %s", folder)
+        folder.mkdir()
 
     git.clone_projects(projects, folder_dest)
     log.info("All %s projects are cloned", len(projects))

@@ -1,8 +1,13 @@
 # Dathomir
 
+[![Dathomir-CI](https://github.com/LucasNoga/Dathomir/actions/workflows/python.yml/badge.svg)](https://github.com/LucasNoga/Dathomir/actions/workflows/python.yml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Version](https://img.shields.io/github/tag/LucasNoga/dathomir.svg)](https://github.com/LucasNoga/dathomir/releases)
+[![Total views](https://img.shields.io/sourcegraph/rrc/github.com/LucasNoga/dathomir.svg)](https://sourcegraph.com/github.com/LucasNoga/dathomir)
+
 Python project to clone all `gitlab` or `github` repositories using gitlab api
 
-**_Version: 1.0.0_**
+**_Version: 1.1.0_**
 
 ## Summary
 
@@ -71,7 +76,7 @@ After you need to setup your `Github` or `Gitlab` account
 ### On GitHub Account
 
 - Go to your account via: `https://github.com/login`
-- Your tooken ca be generate into: `https://github.com/settings/tokens`
+- Your token ca be generate into: `https://github.com/settings/tokens`
 - Select the scope `public_repo` or `repo` (get private repo)
 - Click to generate token
 - Copy-Paste the token just generated into `<GITHUB_TOKEN>`
@@ -83,6 +88,8 @@ After you need to setup your `Github` or `Gitlab` account
   "token": "<GITHUB_TOKEN>"
 }
 ```
+
+See for [more details](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 ### On GitLab Account
 
@@ -99,6 +106,8 @@ After you need to setup your `Github` or `Gitlab` account
   "token": "<GITLAB_TOKEN>"
 }
 ```
+
+See for [more details](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
 
 ### On Self-Host Gitlab instance
 
@@ -167,6 +176,15 @@ $ python -m unittest helper
 $ python -m unittest core
 ```
 
+To execute production tests
+
+```bash
+$ pytest --ignore=repositories --ignore=repositories_test --ignore=exe
+```
+
+On github you need to modify settings to process ci workflow using:  
+https://github.com/marketplace/actions/webfactory-ssh-agent
+
 ## Executable
 
 Command to build executable to execute script
@@ -176,7 +194,7 @@ Command to build executable to execute script
 Careful disable virtualenv
 
 ```sh
-$ pyinstaller dathomir.py --onedir -y --clean --log-level ERROR --distpath=exe/linux
+$ pyinstaller dathomir.py --onedir -y --clean --distpath=exe/linux --log-level INFO
 $ cp ./config.example.json ./exe/linux/dathomir/config.json
 $ ./exe/linux/dathomir/dathomir
 ```
@@ -186,7 +204,7 @@ $ ./exe/linux/dathomir/dathomir
 In powershell
 
 ```sh
-> pyinstaller.exe .\dathomir.py --onedir -y --clean --log-level ERROR --distpath=exe/windows
+> pyinstaller.exe .\dathomir.py --onedir -y --clean --distpath=exe/windows --log-level INFO
 > cp .\config.example.json .\exe\windows\dathomir\config.json
 > .\exe\windows\dathomir\dathomir.exe
 ```

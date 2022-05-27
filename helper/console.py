@@ -16,7 +16,7 @@ def get_options() -> tuple[list[tuple[str, str]], list[str]]:
         sys.argv[1:], SHORT_OPTIONS, LONG_OPTIONS)
 
 
-def is_debug() -> bool:
+def is_arg_debug() -> bool:
     '''Check if we launch into debug mode'''
     options: list = ["-d", "--debug"]  # Options to check
     try:
@@ -31,7 +31,7 @@ def is_debug() -> bool:
     return False
 
 
-def is_console() -> bool:
+def is_arg_console() -> bool:
     '''Check if we launch into console mode'''
     options: list = ["-c", "--console"]  # Options to check
     try:

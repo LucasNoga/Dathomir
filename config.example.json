@@ -2,13 +2,13 @@
   "repo": "repositories",
   "servers": [
     {
-      "name": "Github/LucasNoga",
+      "name": "Github/MyAccount",
       "type": "github",
       "url": "https://github.com",
-      "token": "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"
+      "token": "MgYCIRm3hUqJrLQ0gcAmamfk5x0lfX34BhXo"
     },
     {
-      "name": "Gitlab/LucasNoga",
+      "name": "Gitlab/MyAccount",
       "type": "gitlab",
       "url": "https://gitlab.com",
       "token": "glpat-qCNL5XWGE4ZvNCYnPjDR"
