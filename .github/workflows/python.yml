@@ -15,6 +15,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.4
+        run: |
+          echo "Salut"
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:

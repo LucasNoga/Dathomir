@@ -1,5 +1,10 @@
 # Dathomir
 
+[![ci](https://github.com/LucasNoga/dathomir/actions/workflows/python.yml/badge.svg?branch=master)](https://github.com/LucasNoga/dathomir/actions)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Version](https://img.shields.io/github/tag/LucasNoga/dathomir.svg)](https://github.com/LucasNoga/dathomir/releases)
+[![Total views](https://img.shields.io/sourcegraph/rrc/github.com/LucasNoga/dathomir.svg)](https://sourcegraph.com/github.com/LucasNoga/dathomir)
+
 Python project to clone all `gitlab` or `github` repositories using gitlab api
 
 **_Version: 1.0.0_**

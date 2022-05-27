@@ -294,3 +294,5 @@ config.json
 config-*.json
 repositories*/
 exe/
+id_dathomir*
+id_dathomir

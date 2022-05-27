@@ -28,19 +28,15 @@ def main():
         log.info("Exiting...")
         sys.exit(1)
 
-    # Interface (Console or GUI)
-    interface: Interface
-    if helper.is_console():
-        log.info("Launch console mode")
-        interface = Console(config)
-    else:
-        interface = Gui(config)
-
-    # Launch App
+    # Launch config mode
     if helper.is_config():
         log.info("Launch config mode")
         Console(config).configuration()
         sys.exit(0)
+
+    interface: Interface = pick_interface(config)
+
+    # Launch App
     interface.launch()
 
 
@@ -58,9 +54,25 @@ def setup_logger():
 
 def set_log_level():
     '''Set level log'''
-    level: int = logging.DEBUG if helper.is_debug() else logging.INFO
+    level: int = logging.DEBUG if helper.is_arg_debug() else logging.INFO
     log.setLevel(level)
     log.debug('Set debug mode')
+
+
+def pick_interface(config: Config) -> Interface:
+    '''pick interface from app argument and os'''
+    os_app: str = helper.detect_os()
+
+    # Launch in console mode if linux
+    if os_app == "Linux":
+        return Console(config)
+
+    interface: Interface
+    if helper.is_arg_console():
+        interface = Console(config)
+    else:
+        interface = Gui(config)
+    return interface
 
 
 if __name__ == '__main__':
