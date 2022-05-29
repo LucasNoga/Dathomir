@@ -3,7 +3,6 @@
 import logging
 import re
 import sys
-
 import inquirer
 
 from prettytable import PrettyTable
@@ -12,8 +11,7 @@ import core
 
 from config import Server, constants
 
-
-from interface import Interface
+from .interface import Interface
 
 log = logging.getLogger('dathomir')
 

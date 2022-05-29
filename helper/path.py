@@ -11,6 +11,11 @@ def get_app_path(filepath: Path) -> Path:
     return Path(filepath).parent.absolute()
 
 
+def get_assets_path(filepath: Path) -> Path:
+    '''Get path of the application assets'''
+    return Path(filepath).parent.parent.absolute() / "assets"
+
+
 def get_path(base_folder: str = ".", path: str = None) -> tuple[str, Exception]:
     '''Create all folders recursively from path into base_folder'''
     path_without_protocol: str

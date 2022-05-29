@@ -61,19 +61,18 @@ def set_log_level():
 
 def pick_interface(config: Config) -> Interface:
     '''pick interface from app argument and os'''
-    return Console(config)
 
-    # os_app: str = helper.detect_os()
+    os_app: str = helper.detect_os()
     # Launch in console mode if linux
-    # if os_app == "Linux":
-    #     return Console(config)
+    if os_app == "Linux":
+        return Console(config)
 
-    # interface: Interface
-    # if helper.is_arg_console():
-    #     interface = Console(config)
-    # else:
-    #     interface = Gui(config)
-    # return interface
+    interface: Interface
+    if helper.is_arg_console():
+        interface = Console(config)
+    else:
+        interface = Gui(config)
+    return interface
 
 
 if __name__ == '__main__':

@@ -1,6 +1,5 @@
 '''interface module'''
 
-
-from interface.interface import Interface
-from interface.console import Console
-from interface.gui import Gui
+from .console import Console
+from .gui import Gui
+from .interface import Interface
