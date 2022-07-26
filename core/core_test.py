@@ -4,8 +4,12 @@ To execute: python -m unittest -v core
 
 import unittest
 import warnings
+from typing import List
 
 import pytest
+
+from github.Repository import Repository
+from gitlab.base import RESTObject
 
 from .github import GitHub
 from .gitlab import GitLab
@@ -66,13 +70,13 @@ class TestGitListProjects(unittest.TestCase):
     def test_access_github_projects(self):
         '''python -m unittest core.TestGitListProjects.test_access_github_projects'''
         self.github.connect()
-        projects: list = self.github.get_projects()
+        projects: List[Repository] = self.github.get_projects()
         self.assertIsNotNone(projects)
 
     def test_access_gitlab_projects(self):
         '''python -m unittest core.TestGitListProjects.test_access_gitlab_projects'''
         self.gitlab.connect()
-        projects: list = self.gitlab.get_projects()
+        projects: List[RESTObject] = self.gitlab.get_projects()
         self.assertIsNotNone(projects)
 
 
@@ -91,14 +95,14 @@ class TestGitCloneProject(unittest.TestCase):
     def test_clone_github_project(self):
         '''python -m unittest core.TestGitCloneProject.test_clone_github_project'''
         self.github.connect()
-        project: list = self.github.get_projects()[0]
+        project: Repository = self.github.get_projects()[0]
         self.github.clone_project(project, self.folder)
 
     @pytest.mark.skip(reason="no way of currently testing this")
     def test_clone_gitlab_project(self):
         '''python -m unittest core.TestGitCloneProject.test_clone_gitlab_project'''
         self.gitlab.connect()
-        project: list = self.gitlab.get_projects()[0]
+        project: RESTObject = self.gitlab.get_projects()[0]
         self.gitlab.clone_project(project, self.folder)
 
 

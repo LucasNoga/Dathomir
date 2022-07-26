@@ -3,6 +3,7 @@
 import getopt
 import logging
 import sys
+from typing import List, Tuple
 
 log = logging.getLogger('dathomir')
 
@@ -10,7 +11,7 @@ SHORT_OPTIONS = 'dc'
 LONG_OPTIONS = ['debug', 'console', 'config']
 
 
-def get_options() -> tuple[list[tuple[str, str]], list[str]]:
+def get_options() -> Tuple[List[Tuple[str, str]], List[str]]:
     '''Get all options from console'''
     return getopt.getopt(
         sys.argv[1:], SHORT_OPTIONS, LONG_OPTIONS)
@@ -18,7 +19,7 @@ def get_options() -> tuple[list[tuple[str, str]], list[str]]:
 
 def is_arg_debug() -> bool:
     '''Check if we launch into debug mode'''
-    options: list = ["-d", "--debug"]  # Options to check
+    options: List[str] = ["-d", "--debug"]  # Options to check
     try:
         arguments, _ = get_options()
 
@@ -33,7 +34,7 @@ def is_arg_debug() -> bool:
 
 def is_arg_console() -> bool:
     '''Check if we launch into console mode'''
-    options: list = ["-c", "--console"]  # Options to check
+    options: List[str] = ["-c", "--console"]  # Options to check
     try:
         arguments, _ = get_options()
 
@@ -48,7 +49,7 @@ def is_arg_console() -> bool:
 
 def is_config() -> bool:
     '''Check if we launch config mode'''
-    options: list = ["--config"]  # Options to check
+    options: List[str] = ["--config"]  # Options to check
     try:
         arguments, _ = get_options()
 

@@ -1,7 +1,9 @@
 '''Generic module for Git server'''
 
 import logging
+
 from abc import abstractmethod
+from typing import List
 
 log = logging.getLogger("dathomir")
 
@@ -26,10 +28,10 @@ class Git:
         '''
 
     @abstractmethod
-    def get_projects(self) -> list:
+    def get_projects(self) -> List:
         '''Get all project with your authentication'''
 
-    def clone_projects(self, projects: list, dest_folder: str):
+    def clone_projects(self, projects: List, dest_folder: str):
         '''Get through all git projects to clone into dest folder'''
         log.info("Clonning projects into %s", dest_folder)
         projects = sorted(projects, key=lambda k: k.id)

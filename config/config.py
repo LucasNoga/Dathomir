@@ -3,6 +3,7 @@
 import json
 import logging
 from pathlib import Path
+from typing import List
 
 import helper
 
@@ -17,7 +18,7 @@ class Config:
     path: str
     debug: str = 'true'
     repository: str
-    servers: list[Server]
+    servers: List[Server]
 
     def add_server(self, data):
         '''Add server new server in list with data'''

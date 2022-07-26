@@ -1,13 +1,15 @@
 '''Handle Repositories for gitlab'''
 
 import logging
+from typing import List
+
+import helper
 
 from git import Repo
 from git.exc import GitCommandError
 from gitlab import Gitlab, GitlabAuthenticationError
+from gitlab.base import RESTObject
 from gitlab.v4.objects import Project
-
-import helper
 
 from .exc import AuthGitException
 from .git import Git
@@ -45,7 +47,7 @@ class GitLab(Git):
             return (False, AuthGitException(exc.response_code, exc.error_message))
         return True, None
 
-    def get_projects(self) -> list:
+    def get_projects(self) -> List[RESTObject]:
         '''Get all project with your authentication'''
         if self.hosted:
             return self.remote.projects.list(all=True)

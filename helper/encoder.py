@@ -10,7 +10,7 @@ def encode_token(message: str) -> str:
 def decode_token(encoded: str) -> str:
     '''Decode message with Dathomir method'''
     token_prefix = "ghp_"
-    res = list(encoded)
+    res: list = list(encoded)
     res.insert(0, token_prefix)
     return ''.join(res)
 

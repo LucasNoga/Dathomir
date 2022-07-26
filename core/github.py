@@ -1,6 +1,7 @@
 '''Handle Repositories for gitlab'''
 
 import logging
+from typing import List
 
 from git import Repo
 from git.exc import GitCommandError
@@ -35,7 +36,7 @@ class GitHub(Git):
             return (False, AuthGitException(exc.status, exc.data['message']))
         return True, None
 
-    def get_projects(self) -> list:
+    def get_projects(self) -> List[Repository]:
         '''Get all project with your authentication'''
         return [project for project in self.remote.get_user().get_repos()]
 
